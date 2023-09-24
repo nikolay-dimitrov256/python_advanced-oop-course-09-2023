@@ -34,6 +34,8 @@ for command in commands:
     valid_direction = directions_validation[command](current_row, current_col)
     if valid_direction:
         current_row, current_col = move_miner[command](current_row, current_col)
+    else:
+        continue
 
     if matrix[current_row][current_col] == 'c':
         collected_coal += 1
