@@ -2,7 +2,6 @@ from collections import deque
 
 rows, columns = [int(num) for num in input().split()]
 text = deque(input())
-index = 0
 
 matrix = []
 
