@@ -6,6 +6,8 @@ free_window_seconds = int(input())
 cars_queue = deque()
 total_cars_passed = 0
 no_crash = True
+car_name = ''
+crash_letter = ''
 
 while no_crash:
     line = input()
