@@ -70,8 +70,7 @@ while True:
     # Move the head of the snake
     snake.appendleft((row, col))
     snake_fields.add((row, col))
-
-    render_snake()
+    matrix[row][col] = 'S'
 
     if apple_eaten:
         non_snake_fields = all_fields - snake_fields
