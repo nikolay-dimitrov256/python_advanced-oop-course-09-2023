@@ -61,47 +61,25 @@ class Zoo:
         self.__budget += amount
 
     def animals_status(self):
-        lions = []
-        tigers = []
-        cheetahs = []
 
-        for animal in self.animals:
-            if animal.__class__.__name__ == 'Lion':
-                lions.append(animal.__repr__())
-            elif animal.__class__.__name__ == 'Tiger':
-                tigers.append(animal.__repr__())
-            else:
-                cheetahs.append(animal.__repr__())
-
-        result = [f'You have {len(self.animals)} animals']
-        result.append(f'----- {len(lions)} Lions:')
-        result.extend(lions)
-        result.append(f'----- {len(tigers)} Tigers:')
-        result.extend(tigers)
-        result.append(f'----- {len(cheetahs)} Cheetahs:')
-        result.extend(cheetahs)
-
-        return '\n'.join(result)
+        return self.__print_status(self.animals, 'animals', 'Lion', 'Tiger', 'Cheetah')
 
     def workers_status(self):
-        keepers = []
-        caretakers = []
-        vets = []
 
-        for worker in self.workers:
-            if worker.__class__.__name__ == 'Keeper':
-                keepers.append(worker.__repr__())
-            elif worker.__class__.__name__ == 'Caretaker':
-                caretakers.append(worker.__repr__())
-            else:
-                vets.append(worker.__repr__())
+        return self.__print_status(self.workers, 'workers', 'Keeper', 'Caretaker', 'Vet')
 
-        result = [f'You have {len(self.workers)} workers']
-        result.append(f'----- {len(keepers)} Keepers:')
-        result.extend(keepers)
-        result.append(f'----- {len(caretakers)} Caretakers:')
-        result.extend(caretakers)
-        result.append(f'----- {len(vets)} Vets:')
-        result.extend(vets)
+    @staticmethod
+    def __print_status(collection: List[Animal or Worker], collection_type: str, *types):
+        result = [f'You have {len(collection)} {collection_type}']
+        data = {}
+        for item in types:
+            data[item] = []
+
+        for item in collection:
+            data[item.__class__.__name__].append(item.__repr__())
+
+        for key, value in data.items():
+            result.append(f'----- {len(data[key])} {key}s:')
+            result.extend(data[key])
 
         return '\n'.join(result)
