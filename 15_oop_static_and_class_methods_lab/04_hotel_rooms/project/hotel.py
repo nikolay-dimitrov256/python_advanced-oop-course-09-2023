@@ -23,13 +23,13 @@ class Hotel:
         room = next((r for r in self.rooms if r.number == room_number), None)
 
         if room:
-            room.take_room(people)
+            return room.take_room(people)
 
     def free_room(self, room_number):
         room = next((r for r in self.rooms if r.number == room_number), None)
 
         if room:
-            room.free_room()
+            return room.free_room()
 
     def status(self):
         result = f'Hotel {self.name} has {self.guests} total guests\nFree rooms: '
