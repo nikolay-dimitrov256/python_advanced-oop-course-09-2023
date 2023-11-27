@@ -19,8 +19,8 @@ class CatTests(TestCase):
     def test_eat_method_with_hungry_cat_expected_size_increase_fed_and_sleepy_cat(self):
         self.cat.eat()
 
-        self.assertEqual(True, self.cat.fed)
-        self.assertEqual(True, self.cat.sleepy)
+        self.assertTrue(self.cat.fed)
+        self.assertTrue(self.cat.sleepy)
         self.assertEqual(1, self.cat.size)
 
     def test_sleep_method_with_hungry_cat_raises_exception(self):
@@ -34,7 +34,7 @@ class CatTests(TestCase):
 
         self.cat.sleep()
 
-        self.assertEqual(False, self.cat.sleepy)
+        self.assertFalse(self.cat.sleepy)
 
 
 if __name__ == '__main__':
