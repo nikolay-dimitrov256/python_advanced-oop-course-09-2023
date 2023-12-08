@@ -32,9 +32,7 @@ class FoodOrdersApp:
         return f"Client {client_phone_number} registered successfully."
 
     def add_meals_to_menu(self, *meals: Meal):
-        # TODO: check if it works
         for meal in meals:
-            # if isinstance(meal, Meal):
             if meal.__class__.__name__ in self.VALID_MEALS.keys():
                 self.menu.append(meal)
 
@@ -67,9 +65,6 @@ class FoodOrdersApp:
             if meal.quantity < quantity:
                 raise Exception(f"Not enough quantity of {meal.__class__.__name__}: {name}!")
 
-            # TODO: check if errors
-            # meal.quantity -= quantity
-            # current_meal = self.VALID_MEALS[meal.__class__.__name__](meal.name, meal.price, quantity)
             current_meal = copy.copy(meal)
             current_meal.quantity = quantity
             orders_list.append(current_meal)
@@ -78,7 +73,6 @@ class FoodOrdersApp:
         client.shopping_cart.extend(orders_list)
         client.bill += bill
 
-        # for meal in orders_list:
         for meal in client.shopping_cart:
             menu_meal = next((m for m in self.menu if m.name == meal.name), None)
 
@@ -117,17 +111,6 @@ class FoodOrdersApp:
 
         result = (f"Receipt #{self.get_receipt_id()} with total amount of {client.bill:.2f} "
                   f"was successfully paid for {client_phone_number}.")
-
-        # for meal in client.shopping_cart:
-        #     menu_meal = next((m for m in self.menu if m.name == meal.name), None)
-        #
-        #     if menu_meal is None:
-        #         continue
-        #
-        #     if meal.quantity == menu_meal.quantity:
-        #         self.menu.remove(menu_meal)
-        #     else:
-        #         menu_meal.quantity -= meal.quantity
 
         client.shopping_cart.clear()
         client.bill = 0.0
