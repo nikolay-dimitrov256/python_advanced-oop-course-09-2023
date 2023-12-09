@@ -51,7 +51,6 @@ class BaseDiver(ABC):
         pass
 
     def hit(self, fish: BaseFish):
-        # TODO: check for <=
         if self.oxygen_level < fish.time_to_catch:
             self.oxygen_level = 0.0
         else:

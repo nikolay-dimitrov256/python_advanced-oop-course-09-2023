@@ -61,7 +61,6 @@ class NauticalCatchChallengeApp:
             return f"{diver_name} will not be allowed to dive, due to health issues."
 
         if diver.oxygen_level < fish.time_to_catch:
-            # TODO: maybe use the miss() method
             diver.miss(fish.time_to_catch)
             if diver.oxygen_level == 0:
                 diver.update_health_status()
@@ -69,7 +68,6 @@ class NauticalCatchChallengeApp:
 
         if diver.oxygen_level == fish.time_to_catch:
             if is_lucky:
-                # TODO: maybe remove the fish from the list
                 diver.hit(fish)
                 self.fish_list.remove(fish)
                 if diver.oxygen_level == 0:
